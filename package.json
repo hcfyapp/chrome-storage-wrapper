@@ -1,0 +1,8 @@
+{
+  "name" : "test-chrome-storage" ,
+  "version" : "0.1.0" ,
+  "devDependencies" : {
+    "gulp" : "^3.0.0" ,
+    "gulp-es6-sass" : "*"
+  }
+}

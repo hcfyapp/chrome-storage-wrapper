@@ -1,0 +1,15 @@
+{
+  "name" : "测试chrome-storage.js" ,
+  "version" : "0.1" ,
+  "manifest_version" : 2 ,
+  "description" : "使用这个扩展来测试 chrome-storage.js 是否能正常工作" ,
+  "permissions" : [
+    "storage"
+  ] ,
+  "background" : {
+    "scripts" : [
+      "bg.js"
+    ] ,
+    "persistent" : false
+  }
+}

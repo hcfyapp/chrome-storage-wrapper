@@ -1,0 +1,4 @@
+jasmine-core/
+node_modules/
+*.js
+!gulpfile.js

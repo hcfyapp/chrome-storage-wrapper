@@ -1,0 +1,7 @@
+{
+  "name" : "xxx" ,
+  "private" : "true" ,
+  "devDependencies" : {
+    "jasmine-core" : "^2.0.0"
+  }
+}
