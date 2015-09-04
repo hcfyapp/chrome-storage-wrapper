@@ -3,8 +3,6 @@
         define( [] , factory );
     } else if ( 'undefined' !== typeof module && module.exports ) {
         module.exports = factory();
-    } else if ( 'undefined' !== typeof angular && 'function' === typeof angular.module ) {
-        angular.module( 'ChromeStorage' , [] ).constant( 'ChormeStorage' , factory() );
     } else {
         window.chromeStorage = factory();
     }
@@ -40,7 +38,7 @@
          * 获取存储区域的所有数据
          * @param {String} [area]
          */
-        getAll ( area ) {
+            getAll ( area ) {
             return module.get( null , area );
         } ,
 
