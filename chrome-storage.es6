@@ -1,3 +1,11 @@
+/*!
+ * chrome-storage.js
+ * https://github.com/lmk123/chrome-storage-wrapper
+ *
+ * Version: 0.1.0
+ * Author: Milk Lee <me@limingkai.cn>
+ * Release under MIT license.
+ */
 (function ( factory ) {
     if ( 'function' === typeof define && define.amd ) {
         define( [] , factory );
