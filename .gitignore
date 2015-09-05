@@ -1,4 +1,4 @@
-jasmine-core/
+src/jasmine-core/
 node_modules/
-*.js
+src/*.js
 !gulpfile.js

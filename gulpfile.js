@@ -2,6 +2,7 @@
 
 const gulp = require( 'gulp' ) ,
       cpe  = require( 'gulp-es6-sass' )( gulp , {
-          es6Files : [ './*.es6' ] ,
+          src : './src' ,
+          es6Files : [ './src/*.es6' ] ,
           sassFiles : []
       } );
