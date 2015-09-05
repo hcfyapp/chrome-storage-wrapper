@@ -1,5 +1,5 @@
 {
-  "name" : "chrome-storage" ,
+  "name" : "chrome-storage-wrapper" ,
   "main" : "./release/chrome-storage.js" ,
   "description" : "A tiny wrapper for chrome.storage  that using Promise." ,
   "ignore" : [
