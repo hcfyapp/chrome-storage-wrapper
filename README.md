@@ -140,7 +140,7 @@ bower install
 
 Compile *.es6 files: `gulp compile-es6`
 
-Now load the project in Chrome by click the `Load unpacked extension...` button at `chrome://extensions`. Then it will auto open a page to run test.
+Now load `src` folder which under the project in Chrome by click the `Load unpacked extension...` button at `chrome://extensions`. Then it will auto open a page to run test.
 
 ## License
 MIT
