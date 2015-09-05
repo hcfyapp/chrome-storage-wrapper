@@ -21,7 +21,19 @@ chromeStorage.set({ key:'value' }, 'local')
 
 ## Installation
 
-Get `chrome-storage.js` on [release](https://github.com/lmk123/chrome-storage-wapper/releases), then you can:
+Install with [Bower](http://bower.io/): 
+
+```
+bower install chrome-storage-wrapper
+```
+
+Or install with [npm](https://www.npmjs.com/):
+
+```
+npm install chrome-storage-wrapper
+```
+
+Or get `chrome-storage.js` on [release](https://github.com/lmk123/chrome-storage-wapper/releases), then you can:
 
  + Work with [RequireJS](http://requirejs.org/):`require(['path/to/chrome-storage.js'], chromeStorage => { ... })`
  + Work with [Browserify](http://browserify.org/):`const chromeStorage = require('path/to/chrome-storage.js')`
