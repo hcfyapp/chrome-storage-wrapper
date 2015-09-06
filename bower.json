@@ -3,9 +3,9 @@
   "main" : "./release/chrome-storage.js" ,
   "description" : "A tiny wrapper for chrome.storage  that using Promise." ,
   "ignore" : [
-    "src" ,
-    "package.json" ,
-    "gulpfile.js"
+    "**/*" ,
+    "!release/*",
+    "!README.md"
   ] ,
   "moduleType" : [
     "amd" ,
