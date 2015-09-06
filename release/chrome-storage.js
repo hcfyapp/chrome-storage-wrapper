@@ -29,7 +29,7 @@
 
         /**
          * 封装一层获取方法
-         * @param {Object|String[]|String} keys - 可以是一个对象：{ key1:'null', key2:'' }；也可以是一个数组：['key1','key2']；也可以是一个字符串：'key'
+         * @param {Object|String[]|String} keys - 可以是一个对象：{ key1:'null', key2:''}；也可以是一个数组：['key1','key2']；也可以是一个字符串：'key'
          * @param {String} [area]
          * @returns {Promise}
          */
@@ -84,7 +84,7 @@
 
         /**
          * 封装一层删除方法
-         * @param {Object|String[]|String} keys - 可以是一个对象：{ key1:'null', key2:'' }；也可以是一个数组：['key1','key2']；也可以是一个字符串：'key'
+         * @param {Object|String[]|String} keys - 可以是一个对象：{ key1:'null', key2:''}；也可以是一个数组：['key1','key2']；也可以是一个字符串：'key'
          * @param {String} [area]
          * @returns {Promise}
          */
@@ -125,31 +125,52 @@
          * 而不是一个有newValue和oldValue的对象。
          * 见下面的事件监听函数。
          * @param {Function} listener
-         * @param {String[]} [caseOf] - 关心哪些设置。如果changes里面没有任何一个在 caseOf 对象里列出的 key ，就不会触发事件
+         * @param [options]
+         * @param {String[]} [options.keys] - 关心哪些键的变化
+         * @param {String[]} [options.areas] - 关心哪些存储区域的变化
          * @returns {Function} 最后实际生成的监听函数
          */
-        addChangeListener: function addChangeListener(listener, caseOf) {
-            var cb;
-            if (Array.isArray(caseOf)) {
-                cb = function (changes, area) {
-                    var myChanges = {};
+        addChangeListener: function addChangeListener(listener, options) {
 
-                    for (var key in changes) {
-                        if (caseOf.indexOf(key) >= 0) {
-                            myChanges[key] = changes[key];
-                        }
-                    }
-
-                    for (var hasMyChange in myChanges) {
-                        listener(myChanges, area);
-                        break;
-                    }
-                };
-            } else {
-                cb = listener;
+            if (!options) {
+                options = {};
             }
-            changeCallbacks.push(cb);
-            return cb;
+
+            var _options = options;
+            var keys = _options.keys;
+            var areas = _options.areas;var newListener = undefined;
+
+            if ('string' === typeof keys) {
+                keys = [keys];
+            }
+
+            if ('string' === typeof areas) {
+                areas = [areas];
+            }
+
+            newListener = function (changes, area) {
+                if (Array.isArray(areas)) {
+                    if (areas.indexOf(area) < 0) {
+                        return;
+                    }
+                }
+
+                var keysIsArray = Array.isArray(keys),
+                    myChanges = {};
+
+                for (var key in changes) {
+                    if (!keysIsArray || keys.indexOf(key) >= 0) {
+                        myChanges[key] = changes[key];
+                    }
+                }
+
+                for (var hasMyChange in myChanges) {
+                    listener(myChanges, area);
+                    break;
+                }
+            };
+            changeCallbacks.push(newListener);
+            return newListener;
         },
 
         /**
