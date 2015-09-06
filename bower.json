@@ -3,9 +3,7 @@
   "main" : "./release/chrome-storage.js" ,
   "description" : "A tiny wrapper for chrome.storage  that using Promise." ,
   "ignore" : [
-    "**/.*" ,
-    "node_modules" ,
-    "src/bower_components" ,
+    "src" ,
     "package.json" ,
     "gulpfile.js"
   ] ,
