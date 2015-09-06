@@ -7,7 +7,9 @@ A tiny wrapper for [chrome.storage](https://developer.chrome.com/extensions/stor
 ```js
 chromeStorage.addChangeListener( (changes, area) => {
     expect(changes.key).toBe('value');
-}, ['key'] );
+}, {
+    keys:['key','otherKey']
+} );
 
 chromeStorage.defaultArea = 'sync';
 
