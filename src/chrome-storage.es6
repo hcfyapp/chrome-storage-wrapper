@@ -187,8 +187,8 @@
          * 删除一个监听函数
          * @param {Function} listener
          */
-            removeChangeListener ( listener ) {
-            const index = changeCallbacks.indexOf( listener );
+            removeChangeListener ( newListener ) {
+            const index = changeCallbacks.indexOf( newListener );
             if ( index >= 0 ) {
                 changeCallbacks.splice( index , 1 );
             }
@@ -202,9 +202,8 @@
             customChanges[ key ] = changes[ key ].newValue;
         }
 
-        // 防止对象在回调里被修改，因为这会导致其它回调也收到修改后的对象
-        changeCallbacks.forEach( ( listener ) => {
-            listener( Object.freeze( customChanges ) , area );
+        changeCallbacks.forEach( ( newListener ) => {
+            newListener( customChanges , area );
         } );
     } );
 
