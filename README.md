@@ -117,14 +117,17 @@ chromeStorage.remove([ 'key1', 'key2' })
 
 Removes all items.
 
-#### chromeStorage.addChangeListener(callback[, keysOfArray])
+#### chromeStorage.addChangeListener(callback[, options])
 
-Fired when one or more items change. You can specified an array contain the keys which you want to listen. This function return a function, it's used by `chromeStorage.removeChangeListener`. **Note**: The changes only has the new value. See below:
+Fired when one or more items change. This function return a function, it's used by `chromeStorage.removeChangeListener`. **Note**: The changes only has the new value. See below:
 
 ```js
 chromeStorage.addChangeListener((changes, area) => {
     changes.key2 === 'value2 - changed';
-}, [ 'key2' ] ); // Only listen the change from 'key2'
+}, {
+    keys:['key2'], // optional, String or Array of String. Which keys you want listen.
+    areas:['local'] // optional, String or Array of String. Which storage areas you want listen.
+} ); // Only listen the change from 'key2' and chrome.storage.local
 
 chromeStorage.set('key2','value2 - changed');
 ```

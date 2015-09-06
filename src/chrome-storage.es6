@@ -25,7 +25,7 @@
 
         /**
          * 封装一层获取方法
-         * @param {Object|String[]|String} keys - 可以是一个对象：{ key1:'null', key2:'' }；也可以是一个数组：['key1','key2']；也可以是一个字符串：'key'
+         * @param {Object|String[]|String} keys - 可以是一个对象：{ key1:'null', key2:''}；也可以是一个数组：['key1','key2']；也可以是一个字符串：'key'
          * @param {String} [area]
          * @returns {Promise}
          */
@@ -60,10 +60,10 @@
         set ( key , value , area ) {
             let obj;
             if ( 'object' === typeof key ) {
-                obj = key;
+                obj  = key;
                 area = value;
             } else {
-                obj = {};
+                obj        = {};
                 obj[ key ] = value;
             }
             return new Promise( ( resolve , reject ) => {
@@ -80,7 +80,7 @@
 
         /**
          * 封装一层删除方法
-         * @param {Object|String[]|String} keys - 可以是一个对象：{ key1:'null', key2:'' }；也可以是一个数组：['key1','key2']；也可以是一个字符串：'key'
+         * @param {Object|String[]|String} keys - 可以是一个对象：{ key1:'null', key2:''}；也可以是一个数组：['key1','key2']；也可以是一个字符串：'key'
          * @param {String} [area]
          * @returns {Promise}
          */
@@ -129,7 +129,7 @@
          */
         set defaultArea( area ) {
             noAreaError( area );
-            context = area;
+            context        = area;
             defaultStorage = storage[ context ];
         } ,
 
@@ -139,31 +139,48 @@
          * 而不是一个有newValue和oldValue的对象。
          * 见下面的事件监听函数。
          * @param {Function} listener
-         * @param {String[]} [caseOf] - 关心哪些设置。如果changes里面没有任何一个在 caseOf 对象里列出的 key ，就不会触发事件
+         * @param [options]
+         * @param {String[]} [options.keys] - 关心哪些键的变化
+         * @param {String[]} [options.areas] - 关心哪些存储区域的变化
          * @returns {Function} 最后实际生成的监听函数
          */
-            addChangeListener ( listener , caseOf ) {
-            var cb;
-            if ( Array.isArray( caseOf ) ) {
-                cb = function ( changes , area ) {
-                    const myChanges = {};
+            addChangeListener ( listener , options ) {
 
-                    for ( let key in changes ) {
-                        if ( caseOf.indexOf( key ) >= 0 ) {
-                            myChanges[ key ] = changes[ key ];
-                        }
-                    }
+            if ( !options ) {options = {};}
 
-                    for ( let hasMyChange in myChanges ) {
-                        listener( myChanges , area );
-                        break;
-                    }
-                };
-            } else {
-                cb = listener;
+            let { keys , areas } = options , newListener;
+
+            if ( 'string' === typeof keys ) {
+                keys = [ keys ];
             }
-            changeCallbacks.push( cb );
-            return cb;
+
+            if ( 'string' === typeof areas ) {
+                areas = [ areas ];
+            }
+
+            newListener = ( changes , area ) => {
+                if ( Array.isArray( areas ) ) {
+                    if ( areas.indexOf( area ) < 0 ) {
+                        return;
+                    }
+                }
+
+                const keysIsArray = Array.isArray( keys ) ,
+                      myChanges   = {};
+
+                for ( let key in changes ) {
+                    if ( !keysIsArray || keys.indexOf( key ) >= 0 ) {
+                        myChanges[ key ] = changes[ key ];
+                    }
+                }
+
+                for ( let hasMyChange in myChanges ) {
+                    listener( myChanges , area );
+                    break;
+                }
+            };
+            changeCallbacks.push( newListener );
+            return newListener;
         } ,
 
         /**

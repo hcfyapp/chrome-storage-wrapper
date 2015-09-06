@@ -68,7 +68,7 @@ describe( '完整测试。下面这些测试要按照顺序执行，所以没有
         listener1;
 
     it( '应该能监听到数据的变化' , ( done ) => {
-        spy1 = jasmine.createSpy( 'spy1' );
+        spy1      = jasmine.createSpy( 'spy1' );
         listener1 = chromeStorage.addChangeListener( ( changes , area ) => {
             spy1();
             if ( 1 === spy1.calls.count() ) {
@@ -100,13 +100,15 @@ describe( '完整测试。下面这些测试要按照顺序执行，所以没有
         listener2;
 
     it( '应该能使用第二个参数限定 change 事件的产生' , ( done ) => {
-
-        spy2 = jasmine.createSpy( 'spy2' );
+        spy2      = jasmine.createSpy( 'spy2' );
         listener2 = chromeStorage.addChangeListener( ( changes , area ) => {
             spy2();
             expect( changes ).toEqual( { key2 : 'value2 - changed' } );
             expect( area ).toBe( 'local' );
-        } , [ 'key2' ] );
+        } , {
+            keys  : 'key2' ,
+            areas : 'local'
+        } );
 
         chromeStorage.set( 'key1' , 'value1 - changed' )
             .then( () => {
