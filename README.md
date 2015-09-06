@@ -124,12 +124,13 @@ Fired when one or more items change. This function return a function, it's used 
 ```js
 chromeStorage.addChangeListener((changes, area) => {
     changes.key2 === 'value2 - changed';
+    area === 'local';
 }, {
     keys:['key2'], // optional, String or Array of String. Which keys you want listen.
     areas:['local'] // optional, String or Array of String. Which storage areas you want listen.
 } ); // Only listen the change from 'key2' and chrome.storage.local
 
-chromeStorage.set('key2','value2 - changed');
+chromeStorage.set('key2','value2 - changed','local');
 ```
 
 #### chromeStorage.removeChangeListener(callback)
