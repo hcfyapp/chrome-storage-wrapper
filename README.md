@@ -6,18 +6,19 @@ A tiny wrapper for [chrome.storage](https://developer.chrome.com/extensions/stor
 
 ```js
 chromeStorage.addChangeListener( (changes, area) => {
-    expect(changes.key).toBe('value');
+    expect(changes.key).toBe('value in sync');
 }, {
-    keys:['key','otherKey']
+    keys:['key','otherKey'],
+    areas:'sync'
 } );
 
 chromeStorage.defaultArea = 'sync';
 
-chromeStorage.set( 'key', 'value' )
+chromeStorage.set( 'key', 'value in chrome.storage.sync' )
     .then( () => chromeStorage.get('key') )
-    .then( items => items.key === 'value' );
+    .then( items => items.key === 'value in sync' );
 
-chromeStorage.set({ key:'value' }, 'local')
+chromeStorage.set({ key:'value in chrome.storage.local' }, 'local')
     .then( () => chromeStorage.remove('key','local') );
 ```
 
