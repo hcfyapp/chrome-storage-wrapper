@@ -6,20 +6,27 @@ A tiny wrapper for [chrome.storage](https://developer.chrome.com/extensions/stor
 
 ```js
 chromeStorage.addChangeListener( (changes, area) => {
-    expect(changes.key).toBe('value in sync');
+    expect(changes.key).toBe('value in chrome.storage.local');
+    expect(changes.otherKey).toBeUndefined();
+    expect(area).toBe('local');
 }, {
-    keys:['key','otherKey'],
-    areas:'sync'
+    keys:['key'], // limit change event in these keys
+    areas:'local' // limit change event in chrome.storage.local storage area
 } );
 
 chromeStorage.defaultArea = 'sync';
 
+// This will not fire the change listener because of the change occur in chrome.storage.sync
 chromeStorage.set( 'key', 'value in chrome.storage.sync' )
     .then( () => chromeStorage.get('key') )
-    .then( items => items.key === 'value in sync' );
+    .then( items => items.key === 'value in chrome.storage.sync' );
 
-chromeStorage.set({ key:'value in chrome.storage.local' }, 'local')
-    .then( () => chromeStorage.remove('key','local') );
+// This will fire the change listener by specified the storage area in chrome.storage.local
+chromeStorage.set({
+    key:'value in chrome.storage.local',
+    otherKey:'other value in chrome.storage.local'
+}, 'local')
+    .then( () => chromeStorage.remove(['key','otherKey'],'local') );
 ```
 
 ## Installation
