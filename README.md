@@ -1,5 +1,10 @@
 # chrome-storage.js
 
+[![dependencies Status](https://img.shields.io/david/lmk123/chrome-storage-wrapper.svg?style=flat-square)](https://david-dm.org/lmk123/chrome-storage-wrapper)
+[![devDependencies Status](https://img.shields.io/david/dev/lmk123/chrome-storage-wrapper.svg?style=flat-square)](https://david-dm.org/lmk123/chrome-storage-wrapper#info=devDependencies)
+[![Bower Version](https://img.shields.io/bower/v/chrome-storage-wrapper.svg?style=flat-square)](https://github.com/lmk123/chrome-storage-wrapper/releases)
+[![NPM Version](https://img.shields.io/npm/v/chrome-storage-wrapper.svg?style=flat-square)](https://www.npmjs.com/package/chrome-storage-wrapper)
+
 A tiny wrapper for [chrome.storage](https://developer.chrome.com/extensions/storage) that using [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise).
 
 ## Example
@@ -31,7 +36,7 @@ chromeStorage.set({
 
 ## Installation
 
-Install with [Bower](http://bower.io/): 
+Install with [Bower](http://bower.io/):
 
 ```
 bower install chrome-storage-wrapper
@@ -117,7 +122,7 @@ chromeStorage.set({ key1:'value1', key2:'value2' })
 Removes one or more items.
 
 ```js
-chromeStorage.remove([ 'key1', 'key2' })
+chromeStorage.remove([ 'key1', 'key2' ])
     .then(() => {
         // ...
     });
@@ -126,6 +131,10 @@ chromeStorage.remove([ 'key1', 'key2' })
 #### chromeStorage.clear([area])
 
 Removes all items.
+
+#### chromeStorage.sync([ area-from, area-to])
+
+Sync the data from `area-from` to `area-to`.
 
 #### chromeStorage.addChangeListener(callback[, options])
 

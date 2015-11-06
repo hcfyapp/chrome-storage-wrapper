@@ -4,8 +4,9 @@
   "description" : "A tiny wrapper for chrome.storage  that using Promise." ,
   "ignore" : [
     "**/*" ,
-    "!release/*",
-    "!README.md"
+    "!release/*" ,
+    "!README.md" ,
+    "!package.json"
   ] ,
   "moduleType" : [
     "amd" ,
@@ -24,6 +25,6 @@
     "url" : "https://github.com/lmk123/chrome-storage-wrapper.git"
   } ,
   "devDependencies" : {
-    "jasmine-core" : "^2.0.0"
+    "jasmine-core" : "~2.3.4"
   }
 }

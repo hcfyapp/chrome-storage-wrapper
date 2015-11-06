@@ -1,6 +1,6 @@
 {
   "name" : "chrome-storage-wrapper" ,
-  "version" : "0.1.2" ,
+  "version" : "0.1.3" ,
   "description" : "A tiny wrapper for chrome.storage that using Promise." ,
   "author" : {
     "name" : "Milk Lee" ,
@@ -23,7 +23,13 @@
   ] ,
   "license" : "MIT" ,
   "devDependencies" : {
-    "gulp" : "^3.0.0" ,
-    "gulp-es6-sass" : "*"
+    "babel-cli" : "^6.1.2" ,
+    "babel-preset-es2015" : "^6.1.2" ,
+    "bower" : "^1.6.5" ,
+    "tsd" : "^0.6.5"
+  } ,
+  "scripts" : {
+    "tsd" : "tsd" ,
+    "bower" : "bower"
   }
 }

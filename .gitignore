@@ -1,4 +1,5 @@
-src/jasmine-core/
-node_modules/
-src/*.js
-!gulpfile.js
+/src/jasmine-core/
+/node_modules/
+/src/*.js
+/**/*.map
+/typings/
