@@ -5,6 +5,7 @@
   "ignore" : [
     "**/*" ,
     "!release/*" ,
+    "!src/chrome-storage.es6" ,
     "!README.md" ,
     "!package.json"
   ] ,
