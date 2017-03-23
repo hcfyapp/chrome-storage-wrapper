@@ -1,3 +1,5 @@
+**This project is DEPRECATED, please use [chrome-call](https://github.com/lmk123/chrome-call) instead.**
+
 # chrome-storage.js
 
 [![dependencies Status](https://img.shields.io/david/lmk123/chrome-storage-wrapper.svg?style=flat-square)](https://david-dm.org/lmk123/chrome-storage-wrapper)
